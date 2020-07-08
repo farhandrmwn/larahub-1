@@ -10,4 +10,5 @@ class Jawaban extends Model
     * menggunakan tabel jawaban
     */
     protected $table = "jawaban";
+    public $timestamps = false;
 }
