@@ -18,7 +18,7 @@ class CreatePertanyaanTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('judul', 255);
-            $table->string('isi', 512);
+            $table->longText('isi');
             $table->string('tag', 255);
             $table->dateTime("updated_at");
             $table->dateTime("created_at");

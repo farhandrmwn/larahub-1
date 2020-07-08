@@ -19,7 +19,7 @@ class CreateJawabanTable extends Migration
             $table->unsignedBigInteger('jawaban_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('jawaban_id')->references('id')->on('pertanyaan');
-            $table->string('isi', 512);
+            $table->longText('isi');
             $table->dateTime("created_at");
         });
     }
