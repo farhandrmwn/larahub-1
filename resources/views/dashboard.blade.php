@@ -19,17 +19,20 @@
     <div class="card">
         <button type="button" class="btn btn-primary"><a href="/pertanyaan/create" style="color:white;">Buat Pertanyann</a></button>
     </div>
+
+    @foreach($pertanyaan as $ask)
+
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Judul Pertanyaan</h3>
+            <h3 class="card-title">{{$ask->judul}}</h3>
 
             <div class="card-tools">
-                <form action="/pertanyaan/11/vote/up" method="POST">
+                <form action=<?= "/pertanyaan/" . $ask->id . "/vote/up" ?> method="POST" style="display:inline">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <button type="submit" class="btn btn-success">UP</button>
                 </form>
-                <form action="/pertanyaan/11/vote/down" method="POST">
+                <form action=<?= "/pertanyaan/" . $ask->id . "/vote/down" ?> method="POST" style="display:inline">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <button type="submit" class="btn btn-danger">DOWN</button>
@@ -37,7 +40,9 @@
             </div>
         </div>
         <div class="card-body">
-            Isi pertanyaan
+            <p>
+                {{$ask->isi}}
+            </p>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -45,6 +50,8 @@
         </div>
         <!-- /.card-footer-->
     </div>
+
+    @endforeach
 </div>
 
 @endsection
