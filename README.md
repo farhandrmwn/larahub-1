@@ -31,6 +31,11 @@ INSERT INTO `komentar` (`id`, `pertanyaan_id`, `jawaban_id`, `user_id`, `isi`, `
 INSERT INTO `komentar` (`id`, `pertanyaan_id`, `jawaban_id`, `user_id`, `isi`, `created_at`) VALUES (5, 1, NULL, 3, 'Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '0000-00-00 00:00:00');
 ```
 
+````
+Pemasangan auth scafolding
+sudah ter update pada composer.json "laravel/ui": "^2.1"
+sudah tersedia root dan controller auth
+````
 ## CRUD
 
 ### Menambah pertanyaan
