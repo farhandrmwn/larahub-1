@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Jawaban;
+use App\Pertanyaan;
+use Illuminate\Support\Facades\DB;
 
 class JawabanController extends Controller
 {
@@ -12,10 +14,15 @@ class JawabanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $jawaban = Jawaban::all();
-        // return view('', compact('jawaban'));
+        $ask = Pertanyaan::find($id);
+
+        // $ans = DB::table('Jawaban')->where('jawaban_id', '=', $id)->get(); menggunakan queri
+        $ans = Pertanyaan::find($id)->Jawaban; //pake eloquent
+
+
+        return view('Jawaban.index', compact('ans', 'ask'));
     }
 
     /**
