@@ -31,6 +31,7 @@ class PertanyaanController extends Controller
      */
     public function create()
     {
+        return view('pertanyaan.create');
     }
 
     /**
@@ -46,7 +47,7 @@ class PertanyaanController extends Controller
         $pertanyaan->user_id = auth()->id();
         $pertanyaan->judul = $request->input('judul');
         $pertanyaan->isi = $request->input('isi');
-        $pertanyaan->tag = $request->input('tag');
+        $pertanyaan->tag = $request->input('tags');
 
         $pertanyaan->save();
         return redirect("/");
