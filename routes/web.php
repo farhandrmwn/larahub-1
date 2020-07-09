@@ -19,6 +19,9 @@ Route::get('/', function () {
 });
 Route::get('/pertanyaan/create', 'PertanyaanController@create');
 Route::post('/pertanyaan/create', 'PertanyaanController@store');
+Route::put('/pertanyaan/{id}/vote/{tipe_vote}', 'VoteController@pertanyaan');
+
+
 
 Auth::routes();
 
