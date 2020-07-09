@@ -13,7 +13,7 @@ class Pertanyaan extends Model
 
     public function Jawaban()
     {
-        return $this->hasMany('App\Jawaban');
-        // return $this->hasMany('App\Jawaban', 'jawaban_id');
+        // return $this->hasMany('App\Jawaban');
+        return $this->hasMany('App\Jawaban', 'jawaban_id');
     }
 }

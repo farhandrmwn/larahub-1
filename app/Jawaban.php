@@ -11,4 +11,10 @@ class Jawaban extends Model
     */
     protected $table = "jawaban";
     public $timestamps = false;
+
+    public function Jawaban()
+    {
+        // return $this->belongsTo('App\Pertanyaan');
+        return $this->belongsTo('App\Pertanyaan', 'jawaban_id');
+    }
 }

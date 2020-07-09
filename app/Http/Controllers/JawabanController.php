@@ -17,9 +17,10 @@ class JawabanController extends Controller
     public function index($id)
     {
         $ask = Pertanyaan::find($id);
-        // $jawaban = Pertanyaan::find(1);
-        $ans = DB::table('Jawaban')->where('jawaban_id', '=', $id)->get();
-        // dd($ans);
+
+        // $ans = DB::table('Jawaban')->where('jawaban_id', '=', $id)->get(); menggunakan queri
+        $ans = Pertanyaan::find($id)->Jawaban; //pake eloquent
+
 
         return view('Jawaban.index', compact('ans', 'ask'));
     }
