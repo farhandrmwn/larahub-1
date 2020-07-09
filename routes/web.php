@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('dashboard');
 });
+Route::get('/pertanyaan', 'PertanyaanController@index');
 Route::get('/pertanyaan/create', 'PertanyaanController@create');
 Route::post('/pertanyaan/create', 'PertanyaanController@store');
 

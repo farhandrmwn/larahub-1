@@ -21,7 +21,8 @@ class PertanyaanController extends Controller
     public function index()
     {
         $pertanyaan = Pertanyaan::get();
-        return view("welcome");
+        //dd($pertanyaan);
+        return view('dashboard', compact('pertanyaan'));
     }
 
     /**
