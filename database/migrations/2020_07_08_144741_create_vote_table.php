@@ -20,6 +20,7 @@ class CreateVoteTable extends Migration
             $table->foreign('pertanyaan_id')->references('id')->on('pertanyaan');
             $table->foreign('jawaban_id')->references('id')->on('jawaban');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('tipe');
             $table->dateTime("created_at");
         });
     }
