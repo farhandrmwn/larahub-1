@@ -10,4 +10,5 @@ class Vote extends Model
     * menggunakan tabel vote
     */
     protected $table = "vote";
+    public $timestamps = false;
 }
