@@ -20,7 +20,7 @@
                 <div class="card-header">Input Data jawaban</div>
                 <div class="card-body">
                     <!-- route pertanyaan store -->
-                    <form action="" method="post">
+                    <form action="./create" method="post">
                         {{csrf_field()}}
                         <div class="form-row">
                             <div class="form-group col-md-5 mt-2">
@@ -33,8 +33,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                                <label for="inputPertanyaan">Pertanyaan</label>
-                                <input type="text" name="isi" id="inputIsi" class="form-control">
+                            <label for="inputPertanyaan">Pertanyaan</label>
+                            <input type="text" name="isi" id="inputIsi" class="form-control">
                         </div>
                         <div class="col-md-12">
                             <!-- dashboard -->
