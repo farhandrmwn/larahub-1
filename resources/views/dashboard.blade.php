@@ -14,7 +14,7 @@
           </ol>
         </div>
       </div>
-    </div><!-- /.container-fluid -->
+    </div>
   </section>
   <div class="card">
     <button type="button" class="btn btn-primary"><a href="/pertanyaan/create" style="color:white;">Buat Pertanyann</a></button>
@@ -24,7 +24,7 @@
 
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">{{$ask->judul}}</h3>
+      <h3 class="card-title"><a href="/pertanyaan/{{$ask->id}}">{{$ask->judul}}</a></h3>
 
       <div class="card-tools">
         <form action=<?= "/pertanyaan/" . $ask->id . "/vote/up" ?> method="POST" style="display:inline">
@@ -38,9 +38,6 @@
           <button type="submit" class="btn btn-danger">DOWN</button>
         </form>
 
-        <button type="submit" class="btn btn-sm btn-default">
-          <a href="/pertanyaan/{{$ask->id}}">View</a>
-        </button>
 
       </div>
     </div>
@@ -51,7 +48,7 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer">
-      Footer
+      Dibuat oleh user (...)
     </div>
     <!-- /.card-footer-->
   </div>
