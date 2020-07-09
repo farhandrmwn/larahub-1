@@ -17,11 +17,9 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('dashboard');
 });
-Route::get('/pertanyaan/create', function () {
-    return view('Pertanyaan.create');
-});
+Route::get('/pertanyaan/create', 'PertanyaanController@create');
+Route::post('/pertanyaan/create', 'PertanyaanController@store');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
