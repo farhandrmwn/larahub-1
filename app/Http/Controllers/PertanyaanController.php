@@ -7,6 +7,12 @@ use App\Pertanyaan;
 
 class PertanyaanController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,8 @@ class PertanyaanController extends Controller
      */
     public function index()
     {
-        $tanya = Pertanyaan::all();
+        $pertanyaan = Pertanyaan::get();
+        return view("welcome");
     }
 
     /**
@@ -24,7 +31,6 @@ class PertanyaanController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -35,7 +41,15 @@ class PertanyaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pertanyaan = new Pertanyaan();
+
+        $pertanyaan->user_id = auth()->id();
+        $pertanyaan->judul = $request->input('judul');
+        $pertanyaan->isi = $request->input('isi');
+        $pertanyaan->tag = $request->input('tag');
+
+        $pertanyaan->save();
+        return redirect("/");
     }
 
     /**
