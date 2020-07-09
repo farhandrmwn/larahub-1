@@ -56,6 +56,16 @@
         <div class="card-body">
             <!-- <h5 class="card-title">AnsID: {{ $data->id }}</h5> -->
             <p class="card-text">{{ $data->isi }}</p>
+            <form action=<?= "/jawaban/" . $data->id . "/vote/up" ?> method="POST" style="display:inline">
+                @csrf
+                <input type="hidden" name="_method" value="PUT">
+                <button type="submit" class="btn btn-success">UP</button>
+            </form>
+            <form action=<?= "/jawaban/" . $data->id . "/vote/down" ?> method="POST" style="display:inline">
+                @csrf
+                <input type="hidden" name="_method" value="PUT">
+                <button type="submit" class="btn btn-danger">DOWN</button>
+            </form>
         </div>
         <div class="card-footer">
             @foreach($listKomentarJawaban as $komentarJawaban)
