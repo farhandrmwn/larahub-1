@@ -57,6 +57,14 @@
             <!-- <h5 class="card-title">AnsID: {{ $data->id }}</h5> -->
             <p class="card-text">{{ $data->isi }}</p>
         </div>
+        <div class="card-footer">
+            @foreach($listKomentarJawaban as $komentarJawaban)
+            @if($komentarJawaban->jawaban_id === $data->id)
+            <span class="text-primary">{{ $komentarJawaban->user_name }}</span>
+            <p>{{ $komentarJawaban->komentar_isi }}</p>
+            @endif
+            @endforeach
+        </div>
     </div>
     @endforeach
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Komentar;
 use App\Pertanyaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KomentarController extends Controller
 {
@@ -22,11 +23,25 @@ class KomentarController extends Controller
         return $listKomentar;
     }
 
-    static function getJawaban($jawaban_id)
+    static function getJawaban($pertanyaan_id)
     {
-        $listKomentar = Komentar::all()
-            ->where("pertanyaan_id", "=", NULL)
-            ->where("jawaban_id", "=", $jawaban_id);
+        $listKomentar = DB::select(
+            "SELECT
+                komentar.isi AS komentar_isi,
+                komentar.user_id AS user_id,
+                komentar.jawaban_id AS jawaban_id,
+                users.name AS user_name,
+                jawaban.pertanyaan_id AS pertanyaan_id
+            FROM komentar
+            INNER JOIN jawaban
+                ON komentar.jawaban_id = jawaban.id
+            INNER JOIN pertanyaan
+                ON komentar.jawaban_id = pertanyaan.id
+            INNER JOIN users
+                ON komentar.user_id = users.id
+            WHERE jawaban.pertanyaan_id = $pertanyaan_id"
+        );
+
         return $listKomentar;
     }
 }
