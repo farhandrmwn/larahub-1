@@ -10,6 +10,8 @@ class Komentar extends Model
     * menggunakan tabel komentar
     */
     protected $table = "komentar";
+    protected $fillable = ["pertanyaan_id"];
+    public $timestamps = false;
 
     public function user()
     {
