@@ -27,6 +27,7 @@ Route::post('/jawaban/create/{id}', 'JawabanController@store');
 Route::put('/pertanyaan/{id}/vote/{tipe_vote}', 'VoteController@pertanyaan');
 Route::put('/jawaban/{id}/vote/{tipe_vote}', 'VoteController@jawaban');
 Route::get('/pertanyaan/{a}', 'JawabanController@index');
+Route::post('/pertanyaan/{id}/komentar', 'JawabanController@insertKomentar');
 Route::get('/pertanyaan/detail/{id}', 'PertanyaanController@show');
 
 
