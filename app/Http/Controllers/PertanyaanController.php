@@ -62,7 +62,8 @@ class PertanyaanController extends Controller
      */
     public function show($id)
     {
-        //
+        $pertanyaan = Pertanyaan::find($id);
+        return view('pertanyaan.detail', compact('pertanyaan'));
     }
 
     /**

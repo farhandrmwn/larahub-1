@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Dashboard</h1>
+          <h1>Detail</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -16,15 +16,12 @@
       </div>
     </div><!-- /.container-fluid -->
   </section>
-  <div class="card">
-    <button type="button" class="btn btn-primary"><a href="/pertanyaan/create" style="color:white;">Buat Pertanyann</a></button>
-  </div>
 
   @foreach($pertanyaan as $ask)
 
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title"><a href="/pertanyaan/detail/{{$ask->id}}">{{$ask->judul}}</a></h3>
+      <h3 class="card-title">{{$ask->judul}}</h3>
 
       <div class="card-tools">
         <form action=<?= "/pertanyaan/" . $ask->id . "/vote/up" ?> method="POST" style="display:inline">
@@ -51,9 +48,16 @@
       Dibuat oleh user (...)
     </div>
     <!-- /.card-footer-->
+      @endforeach
   </div>
+  <form>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Example textarea</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+</form>
+</div>
 
-  @endforeach
 </div>
 
 @endsection
