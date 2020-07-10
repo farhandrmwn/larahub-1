@@ -75,7 +75,7 @@
                 <input type="hidden" name="_method" value="PUT">
                 <button type="submit" class="btn btn-danger">DOWN</button>
             </form>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#komenjawaban">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#komenjawaban-{{$data->id}}">
                 Beri Komentar
             </button>
         </div>
@@ -85,6 +85,30 @@
             <span class="text-primary">{{ $komentar->user->name }}</span>
             <p>{{$komentar->isi}}</p>
             @endforeach
+        </div>
+        <div class="modal fade" id="komenjawaban-{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form class="modal-content" action="./{{ $pertanyaan->id }}/komentar" method="POST">
+                    <input type="hidden" name="jawaban_id" value="{{$data->id}}">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Jawaban</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="isi" class="col-form-label">Komentar:</label>
+                            <textarea class="form-control" name="isi" id="message-text"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">+ Komentar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     @endforeach
@@ -116,24 +140,5 @@
 </div>
 
 <!-- Modal Komentar Jawaban-->
-<div class="modal fade" id="komenjawaban" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Jawaban</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="isi" class="col-form-label">Komentar:</label>
-                        <textarea class="form-control" name="isi" id="message-text"></textarea>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
-    @endsection
+@endsection

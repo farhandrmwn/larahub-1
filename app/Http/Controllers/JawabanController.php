@@ -65,6 +65,7 @@ class JawabanController extends Controller
     {
         $komentar = new Komentar();
         $komentar->pertanyaan_id = $id_pertanyaan;
+        $komentar->jawaban_id = $request->input("jawaban_id") !== NULL ? $request->input("jawaban_id") : NULL;
         $komentar->user_id = auth()->id();
         $komentar->isi = $request->input("isi");
         $komentar->created_at = now();
