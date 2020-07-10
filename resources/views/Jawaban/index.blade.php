@@ -92,7 +92,8 @@
     <!-- Modal Komentar Pertanyaan -->
     <div class="modal fade" id="komenpertanyaan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <form class="modal-content" action="./{{ $pertanyaan->id }}/komentar" method="POST">
+                @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Pertanyaan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -100,18 +101,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="isi" class="col-form-label">Komentar:</label>
-                            <textarea class="form-control" name="isi" id="message-text"></textarea>
-                        </div>
-                    </form>
+                    <div class="form-group">
+                        <label for="isi" class="col-form-label">Komentar:</label>
+                        <textarea class="form-control" name="isi" id="message-text"></textarea>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
