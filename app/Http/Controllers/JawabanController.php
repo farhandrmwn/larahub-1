@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Jawaban;
 use App\Komentar;
 use App\Pertanyaan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class JawabanController extends Controller
@@ -33,9 +34,10 @@ class JawabanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+
+        return view('jawaban.create', compact('id'));
     }
 
     /**
@@ -46,7 +48,22 @@ class JawabanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $qs = $request->fullUrl();
+        // $qs = explode('/', $qs);
+        // $leng = count($qs);
+        // $qs = $qs[$leng];
+
+        $date_created = date('Y-m-d H:i:s');
+        $name = $request->input('pertanyaan_id');
+
+        $new_jawab = Jawaban::create([
+            "user_id" => Auth::user()->id,
+            "pertanyaan_id" => $request["pertanyaan_id"],
+            "isi" => $request["isi"],
+            "created_at" => $date_created,
+
+        ]);
+        return redirect('/pertanyaan/' . $name);
     }
 
     /**
