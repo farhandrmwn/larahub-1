@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Jawaban;
+use App\Komentar;
 use App\Pertanyaan;
 use Illuminate\Support\Facades\DB;
 
@@ -18,11 +19,13 @@ class JawabanController extends Controller
     {
         $ask = Pertanyaan::find($id);
 
-        // $ans = DB::table('Jawaban')->where('jawaban_id', '=', $id)->get(); menggunakan queri
-        $ans = Pertanyaan::find($id)->Jawaban; //pake eloquent
+        $ans = DB::table('Jawaban')->where('pertanyaan_id', '=', $id)->get();
+        // $ans = Pertanyaan::find($id)->Jawaban; //pake eloquent
 
+        $listKomentarPertanyaan = KomentarController::getPertanyaan($id);
+        $listKomentarJawaban = KomentarController::getJawaban($id);
 
-        return view('Jawaban.index', compact('ans', 'ask'));
+        return view('Jawaban.index', compact('ans', 'ask', 'listKomentarPertanyaan', 'listKomentarJawaban'));
     }
 
     /**

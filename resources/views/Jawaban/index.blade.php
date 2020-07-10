@@ -23,7 +23,6 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">{{$ask->judul}}</h3>
-
             <div class="card-tools">
                 <form action=<?= "/pertanyaan/" . $ask->id . "/vote/up" ?> method="POST" style="display:inline">
                     @csrf
@@ -37,23 +36,47 @@
                 </form>
             </div>
         </div>
-        <div class="row m-2">
-            @foreach($ans as $data)
-            <div class="m-2 card" style="width: 18rem;">
-                <div class="card-body">
-                    <!-- <h5 class="card-title">AnsID: {{ $data->id }}</h5> -->
-                    <p class="card-text">Content: {{ $data->isi }}</p>
-
-                </div>
-            </div>
-            @endforeach
+        <div class="card-body">
+            <p>{{ $ask->isi }}</p>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-            Footer
+            <p>{{ count($listKomentarPertanyaan) }} Komentar</p>
+            @foreach($listKomentarPertanyaan as $komentarPertanyaan)
+            <span class="text-primary">{{ $komentarPertanyaan->user->name }}</span>
+            <p>{{ $komentarPertanyaan->isi }}</p>
+            @endforeach
         </div>
         <!-- /.card-footer-->
     </div>
+
+    <h3>Jawaban</h3>
+    @foreach($ans as $data)
+    <div class="card">
+        <div class="card-body">
+            <!-- <h5 class="card-title">AnsID: {{ $data->id }}</h5> -->
+            <p class="card-text">{{ $data->isi }}</p>
+            <form action=<?= "/jawaban/" . $data->id . "/vote/up" ?> method="POST" style="display:inline">
+                @csrf
+                <input type="hidden" name="_method" value="PUT">
+                <button type="submit" class="btn btn-success">UP</button>
+            </form>
+            <form action=<?= "/jawaban/" . $data->id . "/vote/down" ?> method="POST" style="display:inline">
+                @csrf
+                <input type="hidden" name="_method" value="PUT">
+                <button type="submit" class="btn btn-danger">DOWN</button>
+            </form>
+        </div>
+        <div class="card-footer">
+            @foreach($listKomentarJawaban as $komentarJawaban)
+            @if($komentarJawaban->jawaban_id === $data->id)
+            <span class="text-primary">{{ $komentarJawaban->user_name }}</span>
+            <p>{{ $komentarJawaban->komentar_isi }}</p>
+            @endif
+            @endforeach
+        </div>
+    </div>
+    @endforeach
 
 </div>
 
