@@ -95,7 +95,12 @@
             </button>
           </div>
           <div class="modal-body">
-            ...
+            <form>
+                <div class="form-group">
+                    <label for="isi" class="col-form-label">Komentar:</label>
+                    <textarea class="form-control" name ="isi" id="message-text"></textarea>
+                </div>
+            </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
