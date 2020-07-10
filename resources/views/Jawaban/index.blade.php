@@ -72,11 +72,11 @@
                 <input type="hidden" name="_method" value="PUT">
                 <button type="submit" class="btn btn-danger">DOWN</button>
             </form>
-        </div>
-        <div class="card-footer">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#komenjawaban">
                 Beri Komentar
             </button>
+        </div>
+        <div class="card-footer">
             @foreach($listKomentarJawaban as $komentarJawaban)
             @if($komentarJawaban->jawaban_id === $data->id)
             <span class="text-primary">{{ $komentarJawaban->user_name }}</span>
