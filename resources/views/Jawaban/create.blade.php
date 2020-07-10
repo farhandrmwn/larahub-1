@@ -17,28 +17,20 @@
     <div class="row mt-5">
         <div class="col-md-12">
             <div class="card mt-5">
-                <div class="card-header">Input Data Pertanyaan</div>
+                <div class="card-header">Input Data jawaban</div>
                 <div class="card-body">
                     <!-- route pertanyaan store -->
-                    <form action="./create" method="post">
+                    <form action="/jawaban/create/{{$id}}" method="post">
                         {{csrf_field()}}
-                        <div class="form-row">
-                            <div class="form-group col-md-5 mt-2">
-                                <label for="inputJudl">Judul</label>
-                                <input type="text" name="judul" id="inputJudul" class="form-control">
-                            </div>
-                            <div class="form-group col-md-5 mt-2">
-                                <label for="inputIsi">Tags</label>
-                                <input type="text" name="tags" id="inputTags" class="form-control">
-                            </div>
-                        </div>
+                        @csrf
                         <div class="form-group">
-                            <label for="inputPertanyaan">Pertanyaan</label>
-                            <input type="text" name="isi" id="inputIsi" class="form-control">
+
+                            <input type="text" name="isi" id="isi" class="form-control">
+                            <input type="hidden" name="pertanyaan_id" id="pertanyaan_id" class="form-control" value="{{$id}}">
                         </div>
                         <div class="col-md-12">
                             <!-- dashboard -->
-                            <a href="../" class="btn btn-sm btn-success">Back</a>
+                            <a href="./" class="btn btn-sm btn-success">Back</a>
                             <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                         </div>
                     </form>

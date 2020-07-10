@@ -51,6 +51,9 @@
     </div>
 
     <h3>Jawaban</h3>
+    <div class="card">
+        <button type="button" class="btn btn-primary"><a href="/jawaban/create/{{$ask->id}}" style="color:white;">Buat Jawaban Kamu</a></button>
+    </div>
     @foreach($ans as $data)
     <div class="card">
         <div class="card-body">
