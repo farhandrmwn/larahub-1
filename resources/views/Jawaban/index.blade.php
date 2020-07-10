@@ -22,6 +22,7 @@
 
     <div class="card">
         <div class="card-header">
+            <span class="text-primary d-block">{{ $pertanyaan->user->name }}</span>
             <h3 class="card-title">{{$pertanyaan->judul}}</h3>
             <div class="card-tools">
                 <form action=<?= "/pertanyaan/" . $pertanyaan->id . "/vote/up" ?> method="POST" style="display:inline">
@@ -46,8 +47,10 @@
         <div class="card-footer">
             <p>{{ count($pertanyaan->komentar) }} Komentar</p>
             @foreach($pertanyaan->komentar as $komentarPertanyaan)
+            @if($komentarPertanyaan->jawaban_id === NULL)
             <span class="text-primary">{{ $komentarPertanyaan->user->name }}</span>
             <p>{{ $komentarPertanyaan->isi }}</p>
+            @endif
             @endforeach
         </div>
         <!-- /.card-footer-->
@@ -57,10 +60,10 @@
     <div class="card">
         <button type="button" class="btn btn-primary"><a href="/jawaban/create/{{$pertanyaan->id}}" style="color:white;">Buat Jawaban Kamu</a></button>
     </div>
-    @foreach($ans as $data)
+    @foreach($jawaban as $data)
     <div class="card">
         <div class="card-body">
-            <!-- <h5 class="card-title">AnsID: {{ $data->id }}</h5> -->
+            <span class="text-primary">{{ $data->user->name }}</span>
             <p class="card-text">{{ $data->isi }}</p>
             <form action=<?= "/jawaban/" . $data->id . "/vote/up" ?> method="POST" style="display:inline">
                 @csrf
@@ -77,11 +80,10 @@
             </button>
         </div>
         <div class="card-footer">
-            @foreach($listKomentarJawaban as $komentarJawaban)
-            @if($komentarJawaban->jawaban_id === $data->id)
-            <span class="text-primary">{{ $komentarJawaban->user_name }}</span>
-            <p>{{ $komentarJawaban->komentar_isi }}</p>
-            @endif
+            <p>{{ count($data->komentar) }} Komentar</p>
+            @foreach($data->komentar as $komentar)
+            <span class="text-primary">{{ $komentar->user->name }}</span>
+            <p>{{$komentar->isi}}</p>
             @endforeach
         </div>
     </div>

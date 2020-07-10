@@ -18,4 +18,14 @@ class Jawaban extends Model
         // return $this->belongsTo('App\Pertanyaan');
         return $this->belongsTo('App\Pertanyaan', 'jawaban_id');
     }
+
+    public function komentar()
+    {
+        return $this->hasMany('App\Komentar', 'jawaban_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }
