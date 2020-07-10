@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-md-12">
                             <!-- dashboard -->
-                            <a href="./" class="btn btn-sm btn-success">Back</a>
+                            <a href="/pertanyaan/{{$id}}" class="btn btn-sm btn-success">Back</a>
                             <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                         </div>
                     </form>
