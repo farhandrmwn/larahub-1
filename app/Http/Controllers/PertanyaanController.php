@@ -20,7 +20,7 @@ class PertanyaanController extends Controller
      */
     public function index()
     {
-        $pertanyaan = Pertanyaan::get();
+        $pertanyaan = Pertanyaan::orderBy("created_at", "DESC")->get();
         //dd($pertanyaan);
         return view('dashboard', compact('pertanyaan'));
     }
