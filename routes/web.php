@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'PertanyaanController@index');
 Route::get('/pertanyaan/create', 'PertanyaanController@create');
 Route::post('/pertanyaan/create', 'PertanyaanController@store');
+
+Route::get('/jawaban/create/{id}', 'JawabanController@create');
+Route::post('/jawaban/create/{id}', 'JawabanController@store');
+
 Route::put('/pertanyaan/{id}/vote/{tipe_vote}', 'VoteController@pertanyaan');
 Route::put('/jawaban/{id}/vote/{tipe_vote}', 'VoteController@jawaban');
 Route::get('/pertanyaan/{a}', 'JawabanController@index');
