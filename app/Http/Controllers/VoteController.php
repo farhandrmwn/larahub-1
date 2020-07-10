@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Pertanyaan;
+use App\Reputasi;
 use App\Vote;
+use App\Jawaban;
 use Illuminate\Http\Request;
 
 class VoteController extends Controller
@@ -14,6 +16,10 @@ class VoteController extends Controller
         if (isset($voteResult[0]->user_id)) {
             return redirect("/");
         }
+
+        $userPembuatPertanyaan = Pertanyaan::where("id", $id)->get();
+
+        Reputasi::insertPoin($tipe_vote, $userPembuatPertanyaan[0]->user_id, auth()->id());
 
         $vote = new Vote();
         $vote->pertanyaan_id = $id;
@@ -31,6 +37,8 @@ class VoteController extends Controller
         if (isset($voteResult[0]->user_id)) {
             return redirect("/");
         }
+        $userPembuatJawaban = Jawaban::where("id", $id)->get();
+        Reputasi::insertPoin($tipe_vote, $userPembuatJawaban[0]->user_id, auth()->id());
 
         $vote = new Vote();
         $vote->jawaban_id = $id;
