@@ -1,5 +1,9 @@
 @extends("layout.master")
 
+@push('head-scripts')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@endpush
+
 @section("content")
 <div class="container">
 
@@ -31,7 +35,7 @@
                         <div class="col-md-12">
                             <!-- dashboard -->
                             <a href="/pertanyaan/{{$id}}" class="btn btn-sm btn-success">Back</a>
-                            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-sm btn-primary" id="trigger-swal">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -40,3 +44,15 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    let triggerSwal = document.getElementById('trigger-swal');
+    triggerSwal.addEventListener('click', () => {
+        swal({
+            icon: "success",
+            text: "Berhasil"
+        })
+    })
+</script>
+@endpush
