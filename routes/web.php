@@ -21,6 +21,7 @@ Route::get('/', 'PertanyaanController@index');
 Route::get('/pertanyaan/create', 'PertanyaanController@create');
 Route::post('/pertanyaan/create', 'PertanyaanController@store');
 Route::put('/pertanyaan/{id}/vote/{tipe_vote}', 'VoteController@pertanyaan');
+Route::put('/jawaban/{id}/vote/{tipe_vote}', 'VoteController@jawaban');
 Route::get('/pertanyaan/{a}', 'JawabanController@index');
 
 

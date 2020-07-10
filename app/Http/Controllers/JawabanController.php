@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Jawaban;
+use App\Komentar;
 use App\Pertanyaan;
 use Illuminate\Support\Facades\DB;
 
@@ -18,10 +19,13 @@ class JawabanController extends Controller
     {
         $ask = Pertanyaan::find($id);
 
-        // $ans = DB::table('Jawaban')->where('jawaban_id', '=', $id)->get(); menggunakan queri
-        $ans = Pertanyaan::find($id)->Jawaban; //pake eloquent
+        $ans = DB::table('Jawaban')->where('pertanyaan_id', '=', $id)->get();
+        // $ans = Pertanyaan::find($id)->Jawaban; //pake eloquent
 
-        return view('Jawaban.index', compact('ans', 'ask'));
+        $listKomentarPertanyaan = KomentarController::getPertanyaan($id);
+        $listKomentarJawaban = KomentarController::getJawaban($id);
+
+        return view('Jawaban.index', compact('ans', 'ask', 'listKomentarPertanyaan', 'listKomentarJawaban'));
     }
 
     /**
@@ -29,9 +33,14 @@ class JawabanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        // $ask_id = $id;
+        // $qs = $request->fullUrl();
+        // $qs = explode('/', $qs);
+        // $leng = count($qs);
+        // $qs = $qs[$leng];
+        return view('jawaban.create', compact('id'));
     }
 
     /**
@@ -42,7 +51,21 @@ class JawabanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $qs = $request->fullUrl();
+        // $qs = explode('/', $qs);
+        // $leng = count($qs);
+        // $qs = $qs[$leng];
+        $ask_id = $request->pertanyaan_id;
+        $date_created = date('Y-m-d H:i:s');
+
+        $new_jawab = Jawaban::create([
+            "user_id" => 1,
+            "pertanyaan_id" => $request["pertanyaan_id"],
+            "isi" => $request["isi"],
+            "created_at" => $date_created,
+
+        ]);
+        return redirect('/pertanyaan/1');
     }
 
     /**
