@@ -66,6 +66,19 @@ class JawabanController extends Controller
         return redirect('/pertanyaan/' . $name);
     }
 
+    public function insertKomentar(Request $request, $id_pertanyaan)
+    {
+        $komentar = new Komentar();
+        $komentar->pertanyaan_id = $id_pertanyaan;
+        $komentar->user_id = auth()->id();
+        $komentar->isi = $request->input("isi");
+        $komentar->created_at = now();
+
+        $komentar->save();
+
+        return redirect("/pertanyaan/" . $id_pertanyaan);
+    }
+
     /**
      * Display the specified resource.
      *
