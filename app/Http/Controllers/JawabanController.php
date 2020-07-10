@@ -21,7 +21,6 @@ class JawabanController extends Controller
         // $ans = DB::table('Jawaban')->where('jawaban_id', '=', $id)->get(); menggunakan queri
         $ans = Pertanyaan::find($id)->Jawaban; //pake eloquent
 
-
         return view('Jawaban.index', compact('ans', 'ask'));
     }
 
