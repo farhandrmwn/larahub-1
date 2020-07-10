@@ -20,6 +20,6 @@ class Komentar extends Model
 
     public function pertanyaan()
     {
-        return $this->belongsTo("App\Pertanyaan", "jawaban_id");
+        return $this->hasOne("App\Pertanyaan", "id");
     }
 }

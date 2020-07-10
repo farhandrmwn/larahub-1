@@ -11,11 +11,16 @@ class KomentarController extends Controller
 {
     protected $table = "komentar";
 
+    static function pertanyaan($pertanyaan_id)
+    {
+        $listKomentar = Pertanyaan::with(["komentar.user", "user"])
+            ->where("pertanyaan.id", "=", $pertanyaan_id)
+            ->get();
+        return $listKomentar;
+    }
+
     static function getPertanyaan($pertanyaan_id)
     {
-        // $listKomentar = Komentar::all()
-        //     ->where("jawaban_id", "=", NULL)
-        //     ->where("pertanyaan_id", "=", $pertanyaan_id);
         $listKomentar = Komentar::with(['user'])
             ->where("komentar.pertanyaan_id", "=", $pertanyaan_id)
             ->where("komentar.jawaban_id", "=", NULL)

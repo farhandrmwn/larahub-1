@@ -18,15 +18,13 @@ class JawabanController extends Controller
      */
     public function index($id)
     {
-        $ask = Pertanyaan::find($id);
-
         $ans = DB::table('Jawaban')->where('pertanyaan_id', '=', $id)->get();
         // $ans = Pertanyaan::find($id)->Jawaban; //pake eloquent
 
-        $listKomentarPertanyaan = KomentarController::getPertanyaan($id);
+        $pertanyaan = KomentarController::pertanyaan($id)->first();
         $listKomentarJawaban = KomentarController::getJawaban($id);
 
-        return view('Jawaban.index', compact('ans', 'ask', 'listKomentarPertanyaan', 'listKomentarJawaban'));
+        return view('Jawaban.index', compact('ans', 'pertanyaan', 'listKomentarJawaban'));
     }
 
     /**

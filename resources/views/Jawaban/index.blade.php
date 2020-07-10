@@ -22,14 +22,14 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">{{$ask->judul}}</h3>
+            <h3 class="card-title">{{$pertanyaan->judul}}</h3>
             <div class="card-tools">
-                <form action=<?= "/pertanyaan/" . $ask->id . "/vote/up" ?> method="POST" style="display:inline">
+                <form action=<?= "/pertanyaan/" . $pertanyaan->id . "/vote/up" ?> method="POST" style="display:inline">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <button type="submit" class="btn btn-success">UP</button>
                 </form>
-                <form action=<?= "/pertanyaan/" . $ask->id . "/vote/down" ?> method="POST" style="display:inline">
+                <form action=<?= "/pertanyaan/" . $pertanyaan->id . "/vote/down" ?> method="POST" style="display:inline">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <button type="submit" class="btn btn-danger">DOWN</button>
@@ -37,15 +37,15 @@
             </div>
         </div>
         <div class="card-body">
-            <p>{{ $ask->isi }}</p>
+            <p>{{ $pertanyaan->isi }}</p>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#komenpertanyaan">
                 Beri Komentar
             </button>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-            <p>{{ count($listKomentarPertanyaan) }} Komentar</p>
-            @foreach($listKomentarPertanyaan as $komentarPertanyaan)
+            <p>{{ count($pertanyaan->komentar) }} Komentar</p>
+            @foreach($pertanyaan->komentar as $komentarPertanyaan)
             <span class="text-primary">{{ $komentarPertanyaan->user->name }}</span>
             <p>{{ $komentarPertanyaan->isi }}</p>
             @endforeach
@@ -55,7 +55,7 @@
 
     <h3>Jawaban</h3>
     <div class="card">
-        <button type="button" class="btn btn-primary"><a href="/jawaban/create/{{$ask->id}}" style="color:white;">Buat Jawaban Kamu</a></button>
+        <button type="button" class="btn btn-primary"><a href="/jawaban/create/{{$pertanyaan->id}}" style="color:white;">Buat Jawaban Kamu</a></button>
     </div>
     @foreach($ans as $data)
     <div class="card">
@@ -75,7 +75,7 @@
         </div>
         <div class="card-footer">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#komenjawaban">
-              Beri Komentar
+                Beri Komentar
             </button>
             @foreach($listKomentarJawaban as $komentarJawaban)
             @if($komentarJawaban->jawaban_id === $data->id)
@@ -89,50 +89,50 @@
 
     <!-- Modal Komentar Pertanyaan -->
     <div class="modal fade" id="komenpertanyaan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Pertanyaan</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-                <div class="form-group">
-                    <label for="isi" class="col-form-label">Komentar:</label>
-                    <textarea class="form-control" name ="isi" id="message-text"></textarea>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Pertanyaan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-
-    <!-- Modal Komentar Jawaban-->
-    <div class="modal fade" id="komenjawaban" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Jawaban</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-                <div class="form-group">
-                    <label for="isi" class="col-form-label">Komentar:</label>
-                    <textarea class="form-control" name ="isi" id="message-text"></textarea>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="isi" class="col-form-label">Komentar:</label>
+                            <textarea class="form-control" name="isi" id="message-text"></textarea>
+                        </div>
+                    </form>
                 </div>
-            </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-@endsection
+<!-- Modal Komentar Jawaban-->
+<div class="modal fade" id="komenjawaban" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Jawaban</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="isi" class="col-form-label">Komentar:</label>
+                        <textarea class="form-control" name="isi" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @endsection
