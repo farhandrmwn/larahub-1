@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pertanyaan;
+use PhpParser\Node\Stmt\Foreach_;
 
 class PertanyaanController extends Controller
 {
@@ -21,7 +22,7 @@ class PertanyaanController extends Controller
     public function index()
     {
         $pertanyaan = Pertanyaan::orderBy("created_at", "DESC")->get();
-        //dd($pertanyaan);
+
         return view('dashboard', compact('pertanyaan'));
     }
 
