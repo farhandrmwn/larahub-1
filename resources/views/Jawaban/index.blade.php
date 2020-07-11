@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="card-body">
-            <p>{{ $pertanyaan->isi }}</p>
+            <p>{!! $pertanyaan->isi !!}</p>
 
             <?php
             $tagtny = explode(',', $pertanyaan->tag);
@@ -78,7 +78,7 @@
     <div class="card">
         <div class="card-body">
             <span class="text-primary">{{ $data->user->name }}</span>
-            <p class="card-text">{{ $data->isi }}</p>
+            <p class="card-text">{!! $data->isi !!}</p>
             <form action=<?= "/jawaban/" . $data->id . "/vote/up" ?> method="POST" style="display:inline">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
