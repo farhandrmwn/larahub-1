@@ -46,6 +46,18 @@
                 {{$ask->isi}}
             </p>
         </div>
+        <!-- isidengantag -->
+        <?php
+        $tagtny = explode(',', $ask->tag);
+        $tagtny1 = [];
+
+        for ($i = 0; $i <  count($tagtny); $i++) {
+            $tagtny1[$i] = $tagtny[$i];
+        }
+        ?>
+        @foreach($tagtny1 as $tag)
+        <button class="btn btn-default btn-sm"> {{$tag}} </button>
+        @endforeach
         <!-- /.card-body -->
         <div class="card-footer">
             Footer
