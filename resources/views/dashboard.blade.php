@@ -55,9 +55,11 @@
             $tagtny1[$i] = $tagtny[$i];
         }
         ?>
-        @foreach($tagtny1 as $tag)
-        <button class="btn btn-default btn-sm"> {{$tag}} </button>
-        @endforeach
+        <div class="m-2">
+            @foreach($tagtny1 as $tag)
+            <button class="btn btn-default btn-sm"> #{{$tag}} </button>
+            @endforeach
+        </div>
         <!-- /.card-body -->
         <div class="card-footer">
             Footer

@@ -39,6 +39,20 @@
         </div>
         <div class="card-body">
             <p>{{ $pertanyaan->isi }}</p>
+
+            <?php
+            $tagtny = explode(',', $pertanyaan->tag);
+            $tagtny1 = [];
+
+            for ($i = 0; $i <  count($tagtny); $i++) {
+                $tagtny1[$i] = $tagtny[$i];
+            }
+            ?>
+            <div class="m-2">
+                @foreach($tagtny1 as $tag)
+                <button class="btn btn-default btn-sm"> #{{$tag}} </button>
+                @endforeach
+            </div>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#komenpertanyaan">
                 Beri Komentar
             </button>
